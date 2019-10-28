@@ -8,25 +8,22 @@ class StringDuplicatorTest {
     private val duplicator = StringDuplicator()
 
     @Test
-    @Throws(Exception::class)
     fun duplicate_emptyString_EmptyStringReturned() {
         assertEquals("", duplicator.duplicate(""))
     }
 
     @Test
-    @Throws(Exception::class)
-    fun duplicate_twoCharacters_threeCharactersReturned() {
-        assertEquals("aaa", duplicator.duplicate("a"))
-        assertEquals("$$$", duplicator.duplicate("$"))
-        assertEquals("111", duplicator.duplicate("1"))
+    fun duplicate_oneCharacter_twoCharactersReturned() {
+        assertEquals("aa", duplicator.duplicate("a"))
+        assertEquals("$$", duplicator.duplicate("$"))
+        assertEquals("11", duplicator.duplicate("1"))
 
     }
 
     @Test
-    @Throws(Exception::class)
     fun reverse_longString_duplicatedStringReturned() {
-        assertEquals("khinkhinkhin", duplicator.duplicate("khin"))
-        assertEquals("AungAungAung", duplicator.duplicate("Aung"))
-        assertEquals("ThiriThiriThiri", duplicator.duplicate("Thiri"))
+        assertEquals("khin788@E\$nkhin788@E\$n", duplicator.duplicate("khin788@E\$n"))
+        assertEquals("Aung,Aung,", duplicator.duplicate("Aung,"))
+        assertEquals("ThiriThiri", duplicator.duplicate("Thiri"))
     }
 }
