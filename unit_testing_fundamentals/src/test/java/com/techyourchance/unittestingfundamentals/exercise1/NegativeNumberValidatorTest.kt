@@ -22,9 +22,13 @@ class NegativeNumberValidatorTest {
     }
 
     @Test
+    fun shouldNotZero(){
+        assertFalse(numberValidator.isNegative(0))
+    }
+
+    @Test
     fun shouldBeNegative(){
         assertTrue(numberValidator.isNegative(-1))
-        assertTrue(numberValidator.isNegative(0))
         assertTrue(numberValidator.isNegative(-100))
     }
 }
