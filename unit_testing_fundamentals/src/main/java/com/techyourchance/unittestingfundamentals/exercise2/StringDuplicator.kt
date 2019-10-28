@@ -7,7 +7,7 @@ class StringDuplicator {
      */
     fun duplicate(string: String): String {
         // the bug is triplication instead of duplication
-        return string + string + string
+        return string + string
     }
 
 }
