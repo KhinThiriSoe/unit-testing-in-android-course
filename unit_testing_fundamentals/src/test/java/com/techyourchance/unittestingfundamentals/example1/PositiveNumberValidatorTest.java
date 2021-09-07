@@ -1,10 +1,10 @@
 package com.techyourchance.unittestingfundamentals.example1;
 
+import static org.hamcrest.CoreMatchers.is;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.is;
 
 public class PositiveNumberValidatorTest {
 
