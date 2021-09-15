@@ -1,5 +1,9 @@
 package com.techyourchance.testdoublesfundamentals.example4;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import com.techyourchance.testdoublesfundamentals.example4.LoginUseCaseSync.UseCaseResult;
 import com.techyourchance.testdoublesfundamentals.example4.authtoken.AuthTokenCache;
 import com.techyourchance.testdoublesfundamentals.example4.eventbus.EventBusPoster;
@@ -9,10 +13,6 @@ import com.techyourchance.testdoublesfundamentals.example4.networking.NetworkErr
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 public class LoginUseCaseSyncTest {
 
