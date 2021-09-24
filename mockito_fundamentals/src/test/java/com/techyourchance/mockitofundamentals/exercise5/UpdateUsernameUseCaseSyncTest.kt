@@ -46,14 +46,14 @@ class UpdateUsernameUseCaseSyncTest {
         SUT.updateUsernameSync(USER_ID, USER_NAME)
 
         // changed from ArgumentCaptor.forClass(String::class.java)
-        val ac = argumentCaptor<String>()
-        verify(updateUsernameHttpEndpointSyncMock, times(1)).updateUsername(
-            ac.capture(),
-            ac.capture()
-        )
-        val capture = ac.allValues
-        assertThat(capture[0], `is`(USER_ID))
-        assertThat(capture[1], `is`(USER_NAME))
+//        val ac = argumentCaptor<String>()
+//        verify(updateUsernameHttpEndpointSyncMock, times(1)).updateUsername(
+//            ac.capture(),
+//            ac.capture()
+//        )
+//        val capture = ac.allValues
+//        assertThat(capture[0], `is`(USER_ID))
+//        assertThat(capture[1], `is`(USER_NAME))
 
         // Aung update
         verify(updateUsernameHttpEndpointSyncMock).updateUsername(
