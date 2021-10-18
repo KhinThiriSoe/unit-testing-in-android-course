@@ -5,6 +5,7 @@ import com.techyourchance.testdrivendevelopment.exercise6.users.User
 import com.techyourchance.testdrivendevelopment.exercise6.users.UsersCache
 
 interface FetchUserUseCaseSync {
+
     enum class Status {
         SUCCESS, FAILURE, NETWORK_ERROR
     }
