@@ -27,6 +27,15 @@ public class LoginUseCaseSyncTest {
 
     LoginUseCaseSync SUT;
 
+    // username and password passed to the endpoint
+    // if login succeeds - user's auth token must be cached
+    // if login fails - auth token is not changed
+    // if login succeeds - login event posted to event bus
+    // if login fails - no login event posted
+    // if login succeeds - success returned
+    // if fail - fail returned
+    // network - network error returned
+
     @Before
     public void setup() throws Exception {
         mLoginHttpEndpointSyncTd = new LoginHttpEndpointSyncTd();
