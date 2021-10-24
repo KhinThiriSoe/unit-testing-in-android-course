@@ -1,14 +1,13 @@
 package com.techyourchance.unittesting.screens.questionslist;
 
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.techyourchance.unittesting.R;
 import com.techyourchance.unittesting.questions.Question;
 import com.techyourchance.unittesting.screens.common.ViewMvcFactory;
