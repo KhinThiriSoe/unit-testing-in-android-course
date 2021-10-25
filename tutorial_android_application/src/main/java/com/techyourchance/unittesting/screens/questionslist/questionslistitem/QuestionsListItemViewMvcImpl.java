@@ -1,8 +1,7 @@
 package com.techyourchance.unittesting.screens.questionslist.questionslistitem;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -21,12 +20,9 @@ public class QuestionsListItemViewMvcImpl extends BaseObservableViewMvc<Question
         setRootView(inflater.inflate(R.layout.layout_question_list_item, parent, false));
 
         mTxtTitle = findViewById(R.id.txt_title);
-        getRootView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for (Listener listener : getListeners()) {
-                    listener.onQuestionClicked(mQuestion);
-                }
+        getRootView().setOnClickListener(view -> {
+            for (Listener listener : getListeners()) {
+                listener.onQuestionClicked(mQuestion);
             }
         });
     }

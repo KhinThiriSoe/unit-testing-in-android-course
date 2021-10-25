@@ -1,8 +1,9 @@
 package com.techyourchance.unittesting.screens.questionslist;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.techyourchance.unittesting.questions.Question;
 import com.techyourchance.unittesting.screens.common.ViewMvcFactory;
