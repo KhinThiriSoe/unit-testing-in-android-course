@@ -2,19 +2,23 @@ package com.techyourchance.unittesting.common.dependencyinjection;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+
 import com.techyourchance.unittesting.networking.StackoverflowApi;
 import com.techyourchance.unittesting.networking.questions.FetchLastActiveQuestionsEndpoint;
 import com.techyourchance.unittesting.networking.questions.FetchQuestionDetailsEndpoint;
 import com.techyourchance.unittesting.questions.FetchLastActiveQuestionsUseCase;
 import com.techyourchance.unittesting.questions.FetchQuestionDetailsUseCase;
+import com.techyourchance.unittesting.questions.FetchQuestionDetailsUseCaseImpl;
 import com.techyourchance.unittesting.screens.common.ViewMvcFactory;
 import com.techyourchance.unittesting.screens.common.controllers.BackPressDispatcher;
 import com.techyourchance.unittesting.screens.common.fragmentframehelper.FragmentFrameHelper;
 import com.techyourchance.unittesting.screens.common.fragmentframehelper.FragmentFrameWrapper;
 import com.techyourchance.unittesting.screens.common.navdrawer.NavDrawerHelper;
 import com.techyourchance.unittesting.screens.common.screensnavigator.ScreensNavigator;
+import com.techyourchance.unittesting.screens.common.screensnavigator.ScreensNavigatorImpl;
 import com.techyourchance.unittesting.screens.common.toastshelper.ToastsHelper;
 import com.techyourchance.unittesting.screens.questiondetails.QuestionDetailsController;
 import com.techyourchance.unittesting.screens.questionslist.QuestionsListController;
@@ -66,7 +70,7 @@ public class ControllerCompositionRoot {
     }
 
     public FetchQuestionDetailsUseCase getFetchQuestionDetailsUseCase() {
-        return new FetchQuestionDetailsUseCase(getFetchQuestionDetailsEndpoint());
+        return new FetchQuestionDetailsUseCaseImpl(getFetchQuestionDetailsEndpoint());
     }
 
     public FetchLastActiveQuestionsUseCase getFetchLastActiveQuestionsUseCase() {
@@ -86,7 +90,7 @@ public class ControllerCompositionRoot {
     }
 
     public ScreensNavigator getScreensNavigator() {
-        return new ScreensNavigator(getFragmentFrameHelper());
+        return new ScreensNavigatorImpl(getFragmentFrameHelper());
     }
 
     private FragmentFrameHelper getFragmentFrameHelper() {

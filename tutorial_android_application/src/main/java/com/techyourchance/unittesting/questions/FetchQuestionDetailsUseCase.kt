@@ -1,29 +1,49 @@
 package com.techyourchance.unittesting.questions
 
-import com.techyourchance.unittesting.common.BaseObservable
 import com.techyourchance.unittesting.networking.questions.FetchQuestionDetailsEndpoint
 import com.techyourchance.unittesting.networking.questions.QuestionSchema
 
-class FetchQuestionDetailsUseCase(private val mFetchQuestionDetailsEndpoint: FetchQuestionDetailsEndpoint) :
-    BaseObservable<FetchQuestionDetailsUseCase.Listener>() {
+interface FetchQuestionDetailsUseCase {
+    fun registerListener(listener: Listener)
+    fun unregisterListener(listener: Listener?)
+    fun fetchQuestionDetailsAndNotify(questionId: String?)
+}
 
-    interface Listener {
-        fun onQuestionDetailsFetched(questionDetails: QuestionDetails?)
-        fun onQuestionDetailsFetchFailed()
+interface Listener {
+    fun onQuestionDetailsFetched(questionDetails: QuestionDetails)
+    fun onQuestionDetailsFetchFailed()
+}
+
+class FetchQuestionDetailsUseCaseImpl(
+    private val fetchQuestionDetailsEndpoint: FetchQuestionDetailsEndpoint
+) : FetchQuestionDetailsUseCase {
+
+    private val listeners = mutableListOf<Listener>()
+
+    private val fetchQuestionDetailsEndpointListener =
+        object : FetchQuestionDetailsEndpoint.Listener {
+            override fun onQuestionDetailsFetched(question: QuestionSchema) {
+                notifySuccess(question.toQuestionDetails())
+            }
+
+            override fun onQuestionDetailsFetchFailed() {
+                notifyFailure()
+            }
+        }
+
+    override fun registerListener(listener: Listener) {
+        listeners.add(listener)
     }
 
-    fun fetchQuestionDetailsAndNotify(questionId: String?) {
-        mFetchQuestionDetailsEndpoint.fetchQuestionDetails(
-            questionId,
-            object : FetchQuestionDetailsEndpoint.Listener {
-                override fun onQuestionDetailsFetched(question: QuestionSchema) {
-                    notifySuccess(question.toQuestionDetails())
-                }
+    override fun unregisterListener(listener: Listener?) {
+        listeners.remove(listener)
+    }
 
-                override fun onQuestionDetailsFetchFailed() {
-                    notifyFailure()
-                }
-            })
+    override fun fetchQuestionDetailsAndNotify(questionId: String?) {
+        fetchQuestionDetailsEndpoint.fetchQuestionDetails(
+            questionId,
+            fetchQuestionDetailsEndpointListener
+        )
     }
 
     private fun notifyFailure() {
@@ -40,5 +60,6 @@ class FetchQuestionDetailsUseCase(private val mFetchQuestionDetailsEndpoint: Fet
         }
     }
 
-    private fun QuestionSchema.toQuestionDetails() = QuestionDetails(id = id, title = title, body = body)
+    private fun QuestionSchema.toQuestionDetails() =
+        QuestionDetails(id = id, title = title, body = body)
 }

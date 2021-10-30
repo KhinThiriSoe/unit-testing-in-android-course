@@ -3,7 +3,7 @@ package com.techyourchance.unittesting.questions
 import com.nhaarman.mockitokotlin2.*
 import com.techyourchance.unittesting.networking.questions.FetchQuestionDetailsEndpoint
 import com.techyourchance.unittesting.networking.questions.QuestionSchema
-import com.techyourchance.unittesting.questions.FetchQuestionDetailsUseCase.*
+import com.techyourchance.unittesting.questions.FetchQuestionDetailsUseCaseImpl.*
 import org.junit.Before
 import org.junit.Test
 
@@ -23,7 +23,7 @@ class FetchQuestionDetailsUseCaseTest {
 
     @Before
     fun setup() {
-        SUT = FetchQuestionDetailsUseCase(fetchQuestionDetailsEndpointMock)
+        SUT = FetchQuestionDetailsUseCaseImpl(fetchQuestionDetailsEndpointMock)
     }
 
     @Test

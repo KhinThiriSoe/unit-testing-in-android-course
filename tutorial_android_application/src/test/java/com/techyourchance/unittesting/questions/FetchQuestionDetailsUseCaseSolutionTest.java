@@ -1,35 +1,20 @@
 package com.techyourchance.unittesting.questions;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doAnswer;
 import com.techyourchance.unittesting.networking.questions.FetchQuestionDetailsEndpoint;
 import com.techyourchance.unittesting.networking.questions.QuestionSchema;
-
+import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FetchQuestionDetailsUseCaseSolutionTest {
@@ -50,7 +35,7 @@ public class FetchQuestionDetailsUseCaseSolutionTest {
     public void setup() throws Exception {
         mListener1 = new ListenerTd();
         mListener2 = new ListenerTd();
-        SUT = new FetchQuestionDetailsUseCase(mFetchQuestionDetailsEndpointMock);
+        SUT = new FetchQuestionDetailsUseCaseImpl(mFetchQuestionDetailsEndpointMock);
     }
 
     @Test
@@ -119,13 +104,13 @@ public class FetchQuestionDetailsUseCaseSolutionTest {
     // endregion helper methods --------------------------------------------------------------------
 
     // region helper classes -----------------------------------------------------------------------
-    private static class ListenerTd implements FetchQuestionDetailsUseCase.Listener {
+    private static class ListenerTd implements Listener {
         private int mCallCount;
         private boolean mSuccess;
         private QuestionDetails mData;
 
         @Override
-        public void onQuestionDetailsFetched(QuestionDetails questionDetails) {
+        public void onQuestionDetailsFetched(@NotNull QuestionDetails questionDetails) {
             mCallCount++;
             mSuccess = true;
             mData = questionDetails;
